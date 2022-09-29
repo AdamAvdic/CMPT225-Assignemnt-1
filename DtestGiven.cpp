@@ -58,9 +58,9 @@ int main() {
     // Will crash if the [] operator is not implemented
 
     
-    deq2[0] = "I'm";
-    deq2[1] = "sorry";
-    deq2[3] = "love";
+    //deq2[0] = "I'm";
+    //deq2[1] = "sorry";
+    //deq2[3] = "love";
     
 
     deq2.display();

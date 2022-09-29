@@ -13,7 +13,7 @@ class Deque
          theCapacity = 8 ;
          objects = new Object[ theCapacity ]; 
          theSize = 0 ;
-         front = -1 ;  //intitially set to 0 **************
+         front = 0 ;  //intitially set to 0 **************
          back = 0 ; 
       }
       
@@ -38,15 +38,14 @@ class Deque
         // Implement this...
       
       if(newCapacity > theCapacity){
-                   Object *newArray = new Object[ newCapacity ];
-           for( int k = 0; k < theSize; ++k ){
-                 newArray[ k ] =  objects[ k ] ;
+           Object *Array_new = new Object[ newCapacity ];
+           for( int i = 0; i < theSize; i++ ){
+                Array_new[i] =  objects[i] ;
           }
            theCapacity = newCapacity;
            Object * temp = objects ; 
-           objects = newArray ;
+           objects = Array_new ;
            delete [ ] temp ;
-
       }
     }
 
@@ -54,25 +53,10 @@ class Deque
 
     void enqueue( const Object & x )// Insert a new object at the back 
     {
-   //     if( theSize == theCapacity ) reserve( 2 * theCapacity + 1 );
-   //     objects[ back ] = x ; 
-   //     back = (back+1) % theCapacity ;
-    //    theSize++ ;
-if( theSize == theCapacity ){ 
-  reserve( 2 * theCapacity + 1 );}
-
-if(front == -1){
-  front = 0;
-  back =0;
-}
-else if(back == theSize-1)
-  back = 0;
-else
- back = back+1;
-
-objects[back] = x;
-
-theSize++;
+        if( theSize == theCapacity ) reserve( 2 * theCapacity + 1 );
+        objects[ back ] = x ; 
+        back = (back+1) % theCapacity ;
+        theSize++ ;
 
 }
     
@@ -91,16 +75,25 @@ theSize++;
       if( theSize == theCapacity ){ 
         reserve( 2 * theCapacity + 1 );}
 
-        if(front == -1){
-          front =0;
-          back =0;
-        } 
-        else if(front ==0){
+      //  if(front == -1){
+      //    front =0;
+      //    back =0;
 
-          front =theSize-1;
-        }else
-        front = front-1;
-        objects[front]=x;
+      //  } 
+      //  else if(front ==0){
+
+      //    front =theSize-1;
+      //  }else
+      //  front = front-1;
+      //  objects[front]=x;
+
+      if(back == 0){
+        front =back; //Deque is empty
+      }
+      else{
+        back = theSize; //else make room 
+        objects[front] = x;
+      }
     }
 
     Object dequeue( )// Remove and return the object at the front 

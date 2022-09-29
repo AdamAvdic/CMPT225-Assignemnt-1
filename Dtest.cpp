@@ -15,7 +15,7 @@ int main() {
     cout << "Test Case 1: \n------------------------------------\n";
 
     int n = 0;
-    deq.enqueue(1);
+  //  deq.enqueue(1);
     deq.display();
     deq.ddisplay();
     while (n < 9) {
@@ -27,9 +27,10 @@ int main() {
     deq.ddisplay();
 
     cout<<"\nTest Case 2: \n ------------------------------------\n";
+    deq.jump(22);
     deq.display();
-    deq.jump(12);
-    deq.enqueue(1);
+    deq.ddisplay();
+    deq.eject();
     deq.display();
     deq.ddisplay();
 };
